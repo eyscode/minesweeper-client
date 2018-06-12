@@ -1,0 +1,41 @@
+#game > div {
+    overflow: hidden;
+}
+
+#game .back {
+    display: inline-block;
+    cursor: pointer;
+}
+
+h3 {
+    margin: 0 0 15px 0;
+}
+
+#game .controls{
+    margin-top: 10px;
+}
+
+#game .controls button{
+    margin-right: 20px;
+}
+
+#game .status {
+    font-size: 14px;
+}
+
+#game .badge {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+#game .badge-win {
+    background-color: mediumseagreen;
+}
+
+#game .badge-lost {
+    background-color: darkred;
+}

@@ -7,6 +7,12 @@ import {
     logout,
     restoreSession,
     loadBoards,
+    loadBoard,
+    cleanBoard,
+    revealCell,
+    flagCell,
+    pauseBoard,
+    resumeBoard,
     createBoard,
     cleanLoginErrors
 } from './actions'
@@ -27,7 +33,10 @@ class App extends Component {
                            status={this.props.app.loginStatus} cleanErrors={this.props.cleanLoginErrors}/>}
                 {this.props.app.loginStatus === 'success' &&
                 <Home boardListStatus={this.props.app.boardListStatus} logout={this.props.logout}
-                      loadBoards={this.props.loadBoards} boards={this.props.app.boards}
+                      loadBoards={this.props.loadBoards} boards={this.props.app.boards} board={this.props.board}
+                      loadBoard={this.props.loadBoard} cleanBoard={this.props.cleanBoard}
+                      revealCell={this.props.revealCell} flagCell={this.props.flagCell}
+                      pauseBoard={this.props.pauseBoard} resumeBoard={this.props.resumeBoard}
                       createBoard={this.props.createBoard} username={this.props.app.username}
                 />}
             </div>
@@ -49,6 +58,12 @@ const mapDispatchToProps = dispatch => {
         logout: () => dispatch(logout()),
         restoreSession: () => dispatch(restoreSession()),
         loadBoards: () => dispatch(loadBoards()),
+        loadBoard: (i) => dispatch(loadBoard(i)),
+        cleanBoard: () => dispatch(cleanBoard()),
+        revealCell: (r, c) => dispatch(revealCell(r, c)),
+        flagCell: (r, c) => dispatch(flagCell(r, c)),
+        pauseBoard: (i) => dispatch(pauseBoard(i)),
+        resumeBoard: (i) => dispatch(resumeBoard(i)),
         createBoard: (r, c, m) => dispatch(createBoard(r, c, m)),
         cleanLoginErrors: () => dispatch(cleanLoginErrors())
     }

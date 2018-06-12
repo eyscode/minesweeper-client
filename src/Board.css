@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+.full-board {
+    border-top: 2px solid #3a0e86;
+    float: left;
+    margin: 20px 0;
+}
+
+.full-board .row {
+    overflow: hidden;
+    border-bottom: 2px solid #3a0e86;
+}
+
+.full-board .row .cell {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-left: 2px solid #3a0e86;
+}
+
+.full-board .row .cell.revealed, .full-board .row .cell.wrong-flagged, .full-board .row .cell.open-mine, .full-board .row .cell.mine {
+    background-color: #b5abbd;
+}
+
+.full-board .row .cell.unrevealed, .full-board .row .cell.flagged {
+    background-color: #5b52b5;
+}
+
+.full-board .row .cell:last-child {
+    border-right: 2px solid #3a0e86;
+}
+
+.full-board .row .cell .inner {
+    left: 2px;
+    height: 100%;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 8px;
+}
+
+.full-board .row .cell.mine .inner {
+    background-image: url("./mine.ico");
+    background-position: 3px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+.full-board .row .cell.flagged .inner {
+    background-image: url("./flag.ico");
+    background-position: 3px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+.full-board .row .cell.wrong-flagged .inner {
+    background-image: url("./wrong-flag.png");
+    background-position: 3px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+.full-board .row .cell.open-mine .inner {
+    background-image: url("./mine_open.ico");
+    background-position: 3px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+.full-board .row .cell.unrevealed .inner, .full-board .row .cell.flagged .inner {
+    border-top: 3px solid #7363df;
+    border-left: 3px solid #7363df;
+    border-bottom: 3px solid #392499;
+    border-right: 3px solid #392499;
+}

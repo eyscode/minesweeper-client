@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
+import Game from "./Game";
 import CreateBoardForm from "./CreateBoardForm";
 
 class Home extends Component {
@@ -7,7 +8,31 @@ class Home extends Component {
         this.props.loadBoards();
     }
 
+    renderButton(b) {
+        if (b.status === 'active') {
+            return <button onClick={() => this.onPlay(b.id)}>Play</button>;
+        } else if (b.status === 'paused') {
+            return <button onClick={() => this.onResume(b.id)}>Resume</button>;
+        } else {
+            return <button onClick={() => this.onResults(b.id)}>See results</button>;
+        }
+    }
+
+    onPlay(boardId) {
+        this.props.loadBoard(boardId);
+    }
+
+    onResume(boardId) {
+        this.props.loadBoard(boardId);
+        this.props.resumeBoard(boardId);
+    }
+
+    onResults(boardId) {
+        this.props.loadBoard(boardId);
+    }
+
     render() {
+
         return (
             <div id="home">
                 <header>
@@ -17,7 +42,11 @@ class Home extends Component {
                     <a onClick={this.props.logout}>Logout</a>
                 </header>
                 <main>
-                    <div>
+                    {!!this.props.board.id && <Game board={this.props.board} cleanBoard={this.props.cleanBoard}
+                                                    revealCell={this.props.revealCell} flagCell={this.props.flagCell}
+                                                    pauseBoard={this.props.pauseBoard}
+                                                    resumeBoard={this.props.resumeBoard}/>}
+                    {!this.props.board.id && <div>
                         <section>
                             <h3>New game</h3>
                             <CreateBoardForm createBoard={this.props.createBoard}/>
@@ -32,6 +61,7 @@ class Home extends Component {
                                         <p><b>Id:</b> {b.id}</p>
                                         <p><b>Status:</b> {b.status}</p>
                                         {!!b.result && <b className={`board-${b.result}`}>{b.result}</b>}
+                                        {this.renderButton(b)}
                                     </li>))
                                 }
                                 <div className="clear"/>
@@ -39,7 +69,7 @@ class Home extends Component {
                             {this.props.boards && this.props.boards.length === 0 &&
                             <div className="empty-list">No games played yet.</div>}
                         </section>
-                    </div>
+                    </div>}
                 </main>
             </div>
         );

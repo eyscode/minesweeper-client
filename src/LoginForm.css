@@ -1,0 +1,39 @@
+#login-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#login-wrapper .login-form {
+    margin: 0 auto;
+}
+
+#login-wrapper .login-form .inner > div {
+    margin-bottom: 20px;
+}
+
+#login-wrapper .login-form .inner > div label {
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+#login-wrapper .login-form .controls {
+    text-align: center;
+    font-size: 14px;
+}
+
+#login-wrapper .login-form .controls button {
+    margin-right: 20px;
+}
+
+.login-error {
+    text-align: center;
+    color: darkred;
+    font-size: 12px;
+}
+
+#login-wrapper .inner {
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 1px solid rgba(255, 255, 255, 0.58);
+}

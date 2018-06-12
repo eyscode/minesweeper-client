@@ -1,0 +1,114 @@
+#home header {
+    padding: 20px 50px;
+    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+    background: #574499;
+
+    display: flex;
+    align-items: center;
+}
+
+#home header div.title {
+    display: inline-block;
+}
+
+#home header div.title span {
+    vertical-align: middle;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+
+}
+
+#home header div.logo {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 20px;
+    background-image: url("./mine-logo.png");
+    background-size: 70%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 5px;
+}
+
+#home header p {
+    margin: 0;
+    color: white;
+    margin-left: auto;
+    font-size: 14px;
+}
+
+#home header .separator {
+    height: 30px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.58);
+    margin: 0 20px;
+}
+
+#home header a {
+    cursor: pointer;
+    color: ghostwhite;
+}
+
+#home main {
+    padding: 30px 50px;
+}
+
+#home main section:first-child {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid lightgray;
+}
+
+.empty-list {
+    font-size: 14px;
+}
+
+.list-games {
+    padding: 0;
+}
+
+.list-games li {
+    margin: 0 20px 20px 0;
+    list-style: none;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 250px;
+    float: left;
+    background: white;
+    position: relative;
+}
+
+.list-games li p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+.board-win, .board-lost {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.board-win {
+    background-color: mediumseagreen;
+    text-transform: uppercase;
+}
+
+.board-lost {
+    background-color: darkred;
+    text-transform: uppercase;
+}
+
+.list-games li:hover {
+    box-shadow: 0 0 10px lightgray;
+}

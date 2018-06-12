@@ -15,6 +15,9 @@ class LoginForm extends Component {
         return (
             <div id="login-wrapper">
                 <div className="login-form">
+                    <div className="title">
+                        <div className="logo"/>
+                        <span>Minesweeper</span></div>
                     <div className="inner">
                         {this.props.status === 'failed' && <p className="login-error">Wrong credentials</p>}
                         <div>

@@ -1,0 +1,8 @@
+#create-board-form > div {
+    margin-bottom: 10px;
+}
+
+#create-board-form > div label {
+    margin-right: 20px;
+    font-size: 14px;
+}

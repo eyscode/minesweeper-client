@@ -6,9 +6,12 @@ import {
     login,
     logout,
     restoreSession,
+    loadBoards,
+    createBoard,
     cleanLoginErrors
 } from './actions'
 import LoginForm from "./LoginForm";
+import Home from "./Home";
 
 class App extends Component {
 
@@ -23,7 +26,10 @@ class App extends Component {
                 <LoginForm login={this.props.login} register={this.props.register}
                            status={this.props.app.loginStatus} cleanErrors={this.props.cleanLoginErrors}/>}
                 {this.props.app.loginStatus === 'success' &&
-                <div><p><a onClick={this.props.logout}>Logout</a></p><p>Hello {this.props.app.username}</p></div>}
+                <Home boardListStatus={this.props.app.boardListStatus} logout={this.props.logout}
+                      loadBoards={this.props.loadBoards} boards={this.props.app.boards}
+                      createBoard={this.props.createBoard} username={this.props.app.username}
+                />}
             </div>
         );
     }
@@ -40,9 +46,11 @@ const mapDispatchToProps = dispatch => {
     return {
         register: (u, p) => dispatch(register(u, p)),
         login: (u, p) => dispatch(login(u, p)),
+        logout: () => dispatch(logout()),
         restoreSession: () => dispatch(restoreSession()),
-        cleanLoginErrors: () => dispatch(cleanLoginErrors()),
-        logout: () => dispatch(logout())
+        loadBoards: () => dispatch(loadBoards()),
+        createBoard: (r, c, m) => dispatch(createBoard(r, c, m)),
+        cleanLoginErrors: () => dispatch(cleanLoginErrors())
     }
 };
 

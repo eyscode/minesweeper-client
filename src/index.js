@@ -9,8 +9,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+document.oncontextmenu = function() {
+    return false;
+};
+
 let store = createStore(combineReducers({
-    app
+    app, board
 }), composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(

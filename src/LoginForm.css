@@ -2,6 +2,8 @@
     height: 100%;
     display: flex;
     align-items: center;
+    background: #574499;
+    color: white;
 }
 
 #login-wrapper .login-form {
@@ -36,4 +38,34 @@
     display: inline-block;
     vertical-align: middle;
     border-left: 1px solid rgba(255, 255, 255, 0.58);
+    padding-left: 40px;
+    margin-left: 40px;
+    padding-top: 20px;
+}
+
+#login-wrapper div.title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#login-wrapper div.title span {
+    vertical-align: middle;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+
+}
+
+#login-wrapper div.logo {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 20px;
+    background-image: url("./mine-logo.png");
+    background-size: 70%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 5px;
 }

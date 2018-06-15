@@ -3,21 +3,26 @@
 }
 
 .full-board {
-    border-top: 2px solid #3a0e86;
-    float: left;
+    overflow-x: scroll;
     margin: 20px 0;
 }
 
+.full-board>.row:first-child .cell {
+    border-top: 2px solid #3a0e86;
+}
+
 .full-board .row {
-    overflow: hidden;
-    border-bottom: 2px solid #3a0e86;
+    max-height: 42px;
+    white-space: nowrap;
 }
 
 .full-board .row .cell {
-    float: left;
+    display: inline-block;
     width: 40px;
     height: 40px;
     border-left: 2px solid #3a0e86;
+    border-bottom: 2px solid #3a0e86;
+    vertical-align: middle;
 }
 
 .full-board .row .cell.revealed, .full-board .row .cell.wrong-flagged, .full-board .row .cell.open-mine, .full-board .row .cell.mine {

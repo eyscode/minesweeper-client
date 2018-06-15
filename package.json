@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "gh-pages": "^1.2.0",
+    "moment": "^2.22.2",
+    "normalizr": "^3.2.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",

@@ -39,6 +39,9 @@ class App extends Component {
                       revealCell={this.props.revealCell} flagCell={this.props.flagCell}
                       pauseBoard={this.props.pauseBoard} resumeBoard={this.props.resumeBoard}
                       createBoard={this.props.createBoard} username={this.props.app.username}
+                      activeBoards={this.props.getBoardsByStatus(this.props.app.boards, 'active')}
+                      pausedBoards={this.props.getBoardsByStatus(this.props.app.boards, 'paused')}
+                      archivedBoards={this.props.getBoardsByStatus(this.props.app.boards, 'archived')}
                 />}
             </div>
         );
@@ -48,6 +51,13 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         app: state.app,
+        getBoardsByStatus: (boards, status) => Object.keys(boards).filter(id => boards[id].status === status).sort((a, b) => {
+            a = new Date(boards[a].created_date);
+            b = new Date(boards[b].created_date);
+            if (a > b) return -1;
+            if (a < b) return 1;
+            if (a === b) return 0;
+        }),
         board: state.board
     }
 };

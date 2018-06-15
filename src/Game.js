@@ -103,7 +103,7 @@ class Game extends Component {
                     {this.props.board.status === 'archived' && this.props.board.result === 'lost' &&
                     <span className="badge badge-lost">You LOST</span>}
                 </h3>
-                <p className="status">Status: {this.props.board.status}</p>
+                <p className="status">Total mines: {this.props.board.mines}</p>
                 {this.props.board.status === "active" && <p><CountUp elapsedTime={elapsedTime}/></p>}
                 {this.props.board.status !== "active" &&
                 <p><span>{secondsToHms(this.props.board.elapsed_time)}</span></p>}

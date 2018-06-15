@@ -1,3 +1,5 @@
+import {normalize, schema} from 'normalizr';
+
 let defaultBoardState = {
     id: null,
     state: null,
@@ -10,42 +12,31 @@ let defaultAppState = {
     access_token: null,
     loginStatus: 'restoring',
     boardListStatus: null,
-    boards: null
+    boards: [],
+    actives: [],
+    paused: [],
+    archived: []
 };
 
+const boardSchema = new schema.Entity('boards');
+const boardListSchema = new schema.Array(boardSchema);
+
 function updateBoards(boardId, boardState, boards) {
-    let newBoards = [];
-    for (let board of boards) {
-        if (board.id === boardId) {
-            board = {...board, ...boardState};
+    return {
+        ...boards,
+        [boardId]: {
+            ...boards[boardId],
+            ...boardState
         }
-        newBoards.push({...board});
-    }
-    const statusDict = {
-        'active': 0,
-        'paused': 1,
-        'archived': 2
     };
-    newBoards.sort((a, b) => {
-        if (statusDict[a.status] < statusDict[b.status]) {
-            return -1;
-        } else if (statusDict[a.status] > statusDict[b.status]) {
-            return 1;
-        }
-        return 0;
-    });
-    return newBoards;
 }
 
 function addBoard(newBoard, boards) {
-    let newBoards = [];
-    for (let board of boards) {
-        newBoards.push({...board});
+    return {
+        ...boards,
+        [newBoard.id]: newBoard
     }
-    newBoards.unshift(newBoard);
-    return newBoards;
 }
-
 
 export function app(state = defaultAppState, action) {
     switch (action.type) {
@@ -92,7 +83,7 @@ export function app(state = defaultAppState, action) {
             return {
                 ...state,
                 boardListStatus: "success",
-                boards: action.boards
+                boards: normalize(action.boards, boardListSchema).entities.boards
             };
         case "PAUSED_BOARD":
             return {

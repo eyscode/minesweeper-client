@@ -32,12 +32,15 @@ class LoginForm extends Component {
                         </div>
                         <div className="controls">
                             {this.state.mode === 'Login' &&
-                            <button disabled={this.state.username === '' || this.state.password === ''}
-                                    onClick={() => this.props.login(this.state.username, this.state.password)}>Sign in
+                            <button
+                                disabled={this.state.username === '' || this.state.password === '' || this.props.loading}
+                                onClick={() => this.props.login(this.state.username, this.state.password)}>Sign in
                             </button>}
                             {this.state.mode === 'New User' &&
-                            <button disabled={this.state.username === '' || this.state.password === ''}
-                                    onClick={() => this.props.register(this.state.username, this.state.password)}>Sign up
+                            <button
+                                disabled={this.state.username === '' || this.state.password === '' || this.props.loading}
+                                onClick={() => this.props.register(this.state.username, this.state.password)}>Sign
+                                up
                             </button>}
                             {this.state.mode === 'Login' && <a onClick={() => this.changeMode('New User')}>Register</a>}
                             {this.state.mode === 'New User' && <a onClick={() => this.changeMode('Login')}>Cancel</a>}

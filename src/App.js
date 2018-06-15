@@ -28,8 +28,9 @@ class App extends Component {
     render() {
         return (
             <div id="app">
-                {(this.props.app.loginStatus === null || this.props.app.loginStatus === 'failed') &&
+                {[null, "failed", "loading"].includes(this.props.app.loginStatus) &&
                 <LoginForm login={this.props.login} register={this.props.register}
+                           loading={this.props.app.loginStatus === "loading"}
                            status={this.props.app.loginStatus} cleanErrors={this.props.cleanLoginErrors}/>}
                 {this.props.app.loginStatus === 'success' &&
                 <Home boardListStatus={this.props.app.boardListStatus} logout={this.props.logout}

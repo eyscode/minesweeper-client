@@ -322,7 +322,7 @@ export function resumeBoard(boardId) {
     return function (dispatch, getState) {
         const access_token = getState().app.access_token;
         boardId = boardId || getState().board.id;
-        return doResumeBoard(access_token, boardId, data => dispatch(resumedBoard(boardId, data.elapsed_time)), err => {
+        return doResumeBoard(access_token, boardId, data => dispatch(resumedBoard(boardId, data.resume_date)), err => {
             console.log('Failed to resume game');
             console.log(err);
         });

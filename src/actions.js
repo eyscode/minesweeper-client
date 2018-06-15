@@ -133,10 +133,10 @@ function doFetch(url, method, token, body, successCb, failCb) {
             } else {
                 failCb(res.data);
             }
-        }).catch(error => {
-            failCb(error);
         })
-    );
+    ).catch(error => {
+        failCb(error);
+    });
 }
 
 function doLogin(username, password, successCb, failCb) {

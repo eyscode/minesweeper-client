@@ -27,13 +27,23 @@ class CreateBoardForm extends Component {
                 <div>
                     <label>Number of mines:</label>
                     <input type="number" name="mines" value={this.state.mines}
-                           onChange={this.handleChange.bind(this, 'mines')}/>
+                           onChange={this.handleChange.bind(this, 'mines')} onKeyPress={(ev) => this.handleEnter(ev)}/>
                 </div>
-                <button disabled={this.state.rows === '' || this.state.columns === '' || this.state.mines === ''}
-                        onClick={() => this.props.createBoard(this.state.rows, this.state.columns, this.state.mines)}>Create
+                <button disabled={!this.allFieldsAreValid()}
+                        onClick={() => this.allFieldsAreValid() && this.props.createBoard(this.state.rows, this.state.columns, this.state.mines)}>Create
                 </button>
             </div>
         );
+    }
+
+    allFieldsAreValid() {
+        return [this.state.rows, this.state.columns, this.state.mines].every(f => !!f && f !== ' ');
+    }
+
+    handleEnter(ev) {
+        if (["enter", "Enter"].includes(ev.key) && this.allFieldsAreValid()) {
+            this.props.createBoard(this.state.rows, this.state.columns, this.state.mines);
+        }
     }
 
     handleChange(field, event) {

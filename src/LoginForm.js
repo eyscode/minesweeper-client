@@ -28,19 +28,23 @@ class LoginForm extends Component {
                         <div>
                             <label>Password:</label>
                             <input type="password" name="password" value={this.state.password}
-                                   onChange={this.handleChange.bind(this, 'password')}/>
+                                   onChange={this.handleChange.bind(this, 'password')}
+                                   onKeyPress={ev => this.handleEnter(ev)}/>
                         </div>
                         <div className="controls">
                             {this.state.mode === 'Login' &&
                             <button
-                                disabled={this.state.username === '' || this.state.password === '' || this.props.loading}
-                                onClick={() => this.props.login(this.state.username, this.state.password)}>Sign in
+                                disabled={!this.allFieldsAreValid() || this.props.loading}
+                                onClick={() => this.allFieldsAreValid() &&
+                                    !this.props.loading &&
+                                    this.props.login(this.state.username, this.state.password)}> Sign in
                             </button>}
                             {this.state.mode === 'New User' &&
                             <button
-                                disabled={this.state.username === '' || this.state.password === '' || this.props.loading}
-                                onClick={() => this.props.register(this.state.username, this.state.password)}>Sign
-                                up
+                                disabled={!this.allFieldsAreValid() || this.props.loading}
+                                onClick={() => this.allFieldsAreValid() &&
+                                    !this.props.loading &&
+                                    this.props.register(this.state.username, this.state.password)}>Sign up
                             </button>}
                             {this.state.mode === 'Login' && <a onClick={() => this.changeMode('New User')}>Register</a>}
                             {this.state.mode === 'New User' && <a onClick={() => this.changeMode('Login')}>Cancel</a>}
@@ -49,6 +53,16 @@ class LoginForm extends Component {
                 </div>
             </div>
         );
+    }
+
+    allFieldsAreValid() {
+        return [this.state.username, this.state.password].every(f => !!f && !!f.replace(/\s+/g, ""));
+    }
+
+    handleEnter(ev) {
+        if (["enter", "Enter"].includes(ev.key) && this.allFieldsAreValid()) {
+            this.props.login(this.state.username, this.state.password)
+        }
     }
 
     changeMode(mode) {
